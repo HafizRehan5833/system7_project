@@ -1,0 +1,22 @@
+# Data and models
+dataset/
+model_train/saved_models/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Node
+node_modules/
+.next/
+
+# Environment
+.env
+.env.local
+
+
+model_train\saved_models
+dataset
+.keras/
