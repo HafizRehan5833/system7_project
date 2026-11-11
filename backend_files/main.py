@@ -18,9 +18,18 @@ logger = logging.getLogger("fruit_freshness_api")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Load the model once at startup instead of on every request."""
-    logger.info("Loading model from %s", config.MODEL_PATH)
-    app.state.model = FruitFreshnessModel(config.MODEL_PATH)
-    logger.info("Model loaded successfully")
+    logger.info("Initializing FruitFreshnessModel (source=%s)...", config.MODEL_SOURCE)
+    app.state.model = FruitFreshnessModel(
+        model_path=config.MODEL_PATH,
+        hf_repo_id=config.HF_REPO_ID,
+        hf_filename=config.HF_FILENAME,
+        source=config.MODEL_SOURCE,
+    )
+    logger.info(
+        "Model loaded successfully from %s (source: %s)",
+        app.state.model.model_location,
+        app.state.model.source,
+    )
     yield
     logger.info("Shutting down API")
 
@@ -66,8 +75,16 @@ def build_prediction(spoiled_probability: float, filename: str | None) -> Predic
 @app.get("/health", response_model=HealthResponse, tags=["system"])
 async def health_check() -> HealthResponse:
     """Report whether the API is running and the model is loaded."""
-    model_loaded = getattr(app.state, "model", None) is not None
-    return HealthResponse(status="ok", model_loaded=model_loaded)
+    model = getattr(app.state, "model", None)
+    model_loaded = model is not None
+    source = getattr(model, "source", None) if model_loaded else None
+    model_location = getattr(model, "model_location", None) if model_loaded else None
+    return HealthResponse(
+        status="ok",
+        model_loaded=model_loaded,
+        source=source,
+        model_location=model_location,
+    )
 
 
 @app.post("/predict", response_model=PredictionResponse, tags=["prediction"])

@@ -20,3 +20,5 @@ node_modules/
 model_train\saved_models
 dataset
 .keras/
+hf_space/
+*.keras

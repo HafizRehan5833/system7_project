@@ -1,4 +1,3 @@
-
 import os
 from pathlib import Path
 
@@ -7,8 +6,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Set writable KERAS_HOME before tensorflow initializes
 os.environ.setdefault("KERAS_HOME", str(BASE_DIR / "model_train" / ".keras"))
 
+# Hugging Face Hub Model Configuration
+HF_REPO_ID = os.getenv("HF_REPO_ID", "HafizRehan5833/fruit-freshness-detection")
+HF_FILENAME = os.getenv("HF_FILENAME", "fruit_freshness_model.keras")
+
+# Local Model Path
 DEFAULT_MODEL_PATH = BASE_DIR / "model_train" / "saved_models" / "fruit_freshness_model.keras"
 MODEL_PATH = Path(os.getenv("MODEL_PATH", str(DEFAULT_MODEL_PATH)))
+
+# Model source: "huggingface", "local", or "auto" (default: "auto")
+# If "auto", prefers local if present, else downloads from Hugging Face Hub
+MODEL_SOURCE = os.getenv("MODEL_SOURCE", "auto").lower()
 
 # Must match the input size used during training
 IMG_SIZE = (224, 224)

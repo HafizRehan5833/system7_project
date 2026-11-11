@@ -15,3 +15,5 @@ class PredictionResponse(BaseModel):
 class HealthResponse(BaseModel):
     status: str
     model_loaded: bool
+    source: Optional[str] = None
+    model_location: Optional[str] = None
