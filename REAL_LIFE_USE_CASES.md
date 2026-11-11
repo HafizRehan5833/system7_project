@@ -179,3 +179,4 @@ Future extensions of this project include:
 1. **Multi-Class Ripeness Stages:** Moving beyond binary fresh/spoiled classification to a 5-stage ripeness score (Unripe -> Ripe -> Peak -> Overripe -> Spoiled).
 2. **Defect Type Segmentation:** Identifying specific diseases (e.g., Anthracnose, Scab, Citrus Canker, Brown Rot).
 3. **Weight & Volume Estimation:** Combining 2D RGB cameras with 3D depth sensors for automated size grading.
+
