@@ -5,6 +5,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg)](https://fastapi.tiangolo.com/)
 [![Next.js 14](https://img.shields.io/badge/Next.js-14-black.svg)](https://nextjs.org/)
 [![Accuracy](https://img.shields.io/badge/Test%20Accuracy-99.84%25-brightgreen.svg)]()
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model%20Hub-yellow.svg)](https://huggingface.co/HafizRehan5833/fruit-freshness-detection)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A production-ready Deep Learning computer vision platform that classifies fruits as **Fresh** or **Spoiled** with **99.84% accuracy** across 8 fruit species. Built with **MobileNetV2 Transfer Learning (TensorFlow/Keras)**, a high-throughput **FastAPI** backend, and a modern **Next.js 14 + Tailwind CSS** frontend dashboard.
@@ -261,6 +262,26 @@ docker build -f backend_files/Dockerfile -t fruit-freshness-api .
 
 # Run the container
 docker run -p 8000:8000 fruit-freshness-api
+```
+
+---
+
+## 🤗 Hugging Face Model Hub
+
+The trained model weights and inference pipeline are hosted on Hugging Face:
+🔗 **[Hugging Face: HafizRehan5833/fruit-freshness-detection](https://huggingface.co/HafizRehan5833/fruit-freshness-detection)**
+
+You can load and use the model in Python directly:
+```python
+from huggingface_hub import hf_hub_download
+import tensorflow as tf
+
+# Download and load
+model_path = hf_hub_download(
+    repo_id="HafizRehan5833/fruit-freshness-detection",
+    filename="fruit_freshness_model.keras"
+)
+model = tf.keras.models.load_model(model_path, compile=False)
 ```
 
 ---
