@@ -1,16 +1,10 @@
-"""Evaluate the best saved model on the held-out test set.
-
-Outputs:
-    saved_models/evaluation_report.json
-    saved_models/confusion_matrix.png
-"""
 
 import json
 import logging
 
 import matplotlib
 
-matplotlib.use("Agg")  # Render plots without a display
+matplotlib.use("Agg") 
 import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
@@ -23,7 +17,6 @@ logger = logging.getLogger(__name__)
 
 
 def load_test_dataset() -> tf.data.Dataset:
-    """Load the test set in a fixed order so predictions line up with labels."""
     return tf.keras.utils.image_dataset_from_directory(
         config.TEST_DIR,
         labels="inferred",
@@ -37,7 +30,6 @@ def load_test_dataset() -> tf.data.Dataset:
 
 
 def save_confusion_matrix(cm: np.ndarray, output_path) -> None:
-    """Save a labeled confusion matrix image."""
     fig, ax = plt.subplots(figsize=(5, 4))
     image = ax.imshow(cm, cmap="Blues")
     fig.colorbar(image, ax=ax)

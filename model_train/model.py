@@ -1,9 +1,4 @@
-"""Model architecture for fresh vs spoiled fruit classification.
 
-The model uses MobileNetV2 pretrained on ImageNet as a feature extractor,
-followed by a small binary classification head. The output is the probability
-that the fruit is spoiled.
-"""
 
 from typing import Tuple
 
@@ -14,7 +9,6 @@ import config
 
 
 def build_data_augmentation() -> Sequential:
-    """Return augmentation layers. They are active only during training."""
     return Sequential(
         [
             layers.RandomFlip("horizontal_and_vertical"),

@@ -1,8 +1,3 @@
-"""FastAPI application for fruit freshness prediction.
-
-Run locally:
-    uvicorn main:app --reload --port 8000
-"""
 
 import logging
 from contextlib import asynccontextmanager
@@ -97,8 +92,6 @@ async def predict(file: UploadFile = File(..., description="Fruit image (JPEG, P
         batch = preprocess_image_bytes(contents)
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
-
-    # Model inference is CPU-bound, so run it in a worker thread to keep the event loop free
     spoiled_probability = await run_in_threadpool(
         app.state.model.predict_spoiled_probability, batch
     )

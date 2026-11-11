@@ -1,4 +1,3 @@
-"""Backend configuration. Values can be overridden with environment variables."""
 
 import os
 from pathlib import Path

@@ -1,5 +1,3 @@
-"""Pydantic models for API requests and responses."""
-
 from typing import Literal, Optional
 
 from pydantic import BaseModel, Field

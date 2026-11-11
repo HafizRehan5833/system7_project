@@ -1,4 +1,3 @@
-"""Loads the trained TensorFlow model and runs predictions."""
 
 from pathlib import Path
 
@@ -7,7 +6,6 @@ import tensorflow as tf
 
 
 class FruitFreshnessModel:
-    """Wrapper around the trained Keras model."""
 
     def __init__(self, model_path: Path) -> None:
         if not model_path.exists():
@@ -19,6 +17,5 @@ class FruitFreshnessModel:
         self._model = tf.keras.models.load_model(model_path, compile=False)
 
     def predict_spoiled_probability(self, batch: np.ndarray) -> float:
-        """Return the probability that the fruit in the batch is spoiled."""
         probabilities = self._model.predict(batch, verbose=0)
         return float(probabilities.ravel()[0])

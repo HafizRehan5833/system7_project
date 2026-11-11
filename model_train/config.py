@@ -1,4 +1,3 @@
-"""Central configuration for the training pipeline."""
 
 from pathlib import Path
 
@@ -19,10 +18,8 @@ HISTORY_NAME = "training_history.json"
 EVAL_REPORT_NAME = "evaluation_report.json"
 CONFUSION_MATRIX_NAME = "confusion_matrix.png"
 
-# Classes. Index 0 = fresh, index 1 = spoiled (the positive class).
 CLASS_NAMES = ["fresh", "spoiled"]
 
-# Data and reproducibility
 IMG_SIZE = (224, 224)
 BATCH_SIZE = 32
 SEED = 42
@@ -30,11 +27,9 @@ VAL_SPLIT = 0.15
 TEST_SPLIT = 0.15
 
 # Model
-DROPOUT_RATE = 0.4           # Slightly higher dropout for better generalization
-
-# Training schedule
-EPOCHS_HEAD = 10             # Phase 1: train only the classification head
-EPOCHS_FINE = 15             # Phase 2: fine-tune the top MobileNetV2 layers
+DROPOUT_RATE = 0.4          
+EPOCHS_HEAD = 10           
+EPOCHS_FINE = 15           
 LR_HEAD = 1e-3
 LR_FINE = 1e-5
-FINE_TUNE_LAYERS = 40        # Unfreeze more layers for better fine-tuning
+FINE_TUNE_LAYERS = 40        

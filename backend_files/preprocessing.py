@@ -1,9 +1,4 @@
-"""Image decoding and preprocessing for inference.
 
-This must match the training pipeline: RGB, resized to IMG_SIZE with bilinear
-interpolation, and float pixels in the 0-255 range. Scaling to [-1, 1] happens
-inside the model.
-"""
 
 from io import BytesIO
 
